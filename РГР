@@ -1,0 +1,113 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    const int N = 10; // Заміни це значення на бажане
+    double a, b, dx;
+
+    cout << "Type a, dx, b with using space: ";
+    cin >> a >> dx >> b;
+
+    double x[N + 1], y[N + 1];
+
+    // Заповнення масиву x за законом
+    for (int i = 1; i <= N; i++) {
+        x[i] = a + (i - 1) * dx;
+    }
+
+    // Заповнення масиву y за умовою
+    for (int i = 1; i <= N; i++) {
+        y[i] = (x[i] < (a + b) / 2) ? abs(x[i]) : 10 * x[i];
+    }
+
+    double positive[N + 1], negative[N + 1];
+
+    int posCount = 0, negCount = 0;
+
+    // Розділення масиву y на додатні та від'ємні значення
+    for (int i = 1; i <= N; i++) {
+        if (y[i] >= 0) {
+            positive[posCount++] = y[i];
+        }
+        else {
+            negative[negCount++] = y[i];
+        }
+    }
+
+    double result[N + 1];
+
+    int i = 0, j = 0, k = 0;
+
+    // Об'єднання додатних та від'ємних значень у змінну result
+    while (i < posCount && j < negCount) {
+        result[k++] = positive[i++];
+        result[k++] = negative[j++];
+    }
+
+    // Додавання елементів, які залишилися у positive
+    while (i < posCount) {
+        result[k++] = positive[i++];
+    }
+
+    // Додавання елементів, які залишилися у negative
+    while (j < negCount) {
+        result[k++] = negative[j++];
+    }
+
+    // Виведення результатів у вигляді таблички
+    cout << setw(15) << "Array X" << setw(15) << "Array Y" << setw(25) << "Finished array Y" << endl;
+    for (int i = 1; i <= N; i++) {
+        cout << setw(15) << x[i] << setw(15) << y[i] << endl;
+    }
+    for (int i = 0; i < k; i++) {
+        cout << setw(25) << result[i] << endl;
+    }
+    // Виведення таблиці за допомогою кодової таблиці MS DOS (CP-866)
+    cout << char(218);
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(194);
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(194);
+    for (int i = 0; i < 25; i++) {
+        cout << char(196);
+    }
+    cout << char(191) << endl;
+    cout << char(179) << " Array X     " << char(179) << " Array Y      " << char(179) << " Finished array Y          " << char(179) << endl;
+    cout << char(195);
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(197);
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(197);
+    for (int i = 0; i < 25; i++) {
+        cout << char(196);
+    }
+    cout << char(180) << endl;
+    for (int i = 1; i <= N; i++) {
+        cout << char(179) << setw(15) << x[i] << char(179) << setw(15) << y[i] << char(179) << "                         " << char(179) << endl;
+    }
+    
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(193);
+    for (int i = 0; i < 15; i++) {
+        cout << char(196);
+    }
+    cout << char(193);
+    for (int i = 0; i < 25; i++)
+
+        
+
+    return 0;
+}
